@@ -1,58 +1,258 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Product CRUD Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Simple Product CRUD application built using **Laravel**, **Blade Template**, **Blade Components**, and **Bootstrap**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Product List
+* Create Product
+* Edit Product
+* Show Product Detail
+* Bootstrap UI
+* Blade Components
+* Route Grouping
+* MySQL Database Integration
+* Random Product Seeder Logic
+* Back to List Navigation
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+# Technologies
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Laravel 13
+* PHP 8.4
+* MySQL
+* Bootstrap 5
+* Blade Template Engine
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+# Installation
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/SahrilRyu08/Web-Development-laravel
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Move to Project
 
-## Contributing
+```bash
+cd Web-Development-laravel
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Install Dependency
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+# Environment Setup
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Copy `.env` file:
 
-## License
+```bash
+cp .env.example .env
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Database Configuration
+
+Update `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_product
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
+---
+
+# Run Migration
+
+```bash
+php artisan migrate
+```
+
+---
+
+# Run Application
+
+```bash
+php artisan serve
+```
+
+Application URL:
+
+```plaintext
+http://127.0.0.1:8000/products
+```
+
+---
+
+# Routes
+| GET    | /products             | products        | Product List        |
+| GET    | /products/create      | products.create | Create Product Page |
+| GET    | /products/edit/{id}   | products.edit   | Edit Product        |
+| POST   | /products/store       | products.store  | Store Product       |
+| POST   | /products/update/{id} | products.update | Update Product      |
+| GET    | /products/show/{id}   | products.show   | Product Detail      |
+---
+
+# Features Detail
+
+## Product List
+
+* Display 20 random products
+* Bootstrap Card UI
+* Blade Directives (`@foreach`)
+* Product Detail Button
+* Product Edit Button
+* Add New Product Button
+
+---
+
+## Create Product
+
+Form fields:
+
+* Product Name
+* Description
+* Price
+
+Submit form to:
+
+```plaintext
+/products/store
+```
+
+---
+
+## Edit Product
+
+* Update existing product
+* Reuse same form component
+
+---
+
+## Product Detail
+
+Display:
+
+* Product Name
+* Description
+* Product Price
+
+---
+
+# Blade Components
+
+## Layout Component
+
+```plaintext
+resources/views/components/layout.blade.php
+```
+
+Reusable layout wrapper using Bootstrap.
+
+---
+
+## Product Card Component
+
+```plaintext
+resources/views/components/product-card.blade.php
+```
+
+Reusable product card component.
+
+---
+
+# Controller
+
+```plaintext
+app/Http/Controllers/ProductController.php
+```
+
+Contains:
+
+* index()
+* create()
+* edit()
+* show()
+* store()
+* update()
+
+---
+
+# Model
+
+```plaintext
+app/Models/Product.php
+```
+
+Fillable fields:
+
+```php
+protected $fillable = [
+    'name',
+    'description',
+    'price',
+];
+```
+
+---
+
+# Migration
+
+```plaintext
+database/migrations/create_products_table.php
+```
+
+Columns:
+
+* id
+* name
+* description
+* price
+* timestamps
+
+---
+
+# UI Preview
+
+Pages included:
+
+* Product List
+* Create Product
+* Edit Product
+* Product Detail
+
+---
+
+# Future Improvements
+
+* Delete Product
+* Product Search
+* Pagination
+* Validation Error UI
+* Flash Success Message
+* Authentication
+* API Version
+* Image Upload
+* Responsive Dashboard
+
+---
+
+# Author
+
+Sahril Saepuloh
+
+GitHub:
+
+[https://github.com/SahrilRyu08](https://github.com/SahrilRyu08)
